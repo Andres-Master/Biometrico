@@ -155,10 +155,37 @@ class ModeloMenu{
                       descripcion = '$this->descripcion',
                       orden = $this->orden,
                       pagina = $this->pagina,
-                      padre = this.claro_signatre
-                      where estado = 'I'";
+                      padre = $this->padre
+                      where id_menu=$id";
         $resultado = $this->db->query($query);
         return $resultado;
+    }
+    
+    public function delete($id){
+        $query = "update menu
+                  set estado='I'
+                  where id_menu=$id";
+        $resultado = $this->db->query($query);
+        return $resultado;
+    }
+    public function reader($filtro,$estado){
+        $query = "select m.id_menu,
+                         m.nombre,
+                         m.descripcion,
+                         m.orden,
+                         m.pagina,
+                         m.id_padre,
+                         m.fecha_inserccion,
+                         m.estado
+                    from menu
+                   where (m.id_menu like '%$filtro%',
+                      or  m.nombre like '%$filtro%',
+                      or  m.descripcion like '%$filtro%',
+                      or  m.orden like '%$filtro%',
+                      or  m.pagina like '%$filtro%',
+                      or  m.pagina like '%$filtro%',
+                      or  m.fecha_inserccion like '%$filtro%')
+                     and m.estado='$estado'";
     }
     
     
