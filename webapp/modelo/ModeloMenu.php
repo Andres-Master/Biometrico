@@ -159,6 +159,7 @@ class ModeloMenu{
                       where estado = 'I'";
         $resultado = $this->db->query($query);
         return $resultado;
+        
     }
     
     
