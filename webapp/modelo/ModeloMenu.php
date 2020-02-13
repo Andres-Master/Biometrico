@@ -143,7 +143,23 @@ class ModeloMenu{
     }
     
     public function create(){
-        $query ="insert into ";
+        $query ="insert into menu (nombre, descripcion, orden, pagina, id_padre, fecha_inserccion, estado)
+                values ('$this->nombre', '$this->descripcion', $this->orden, $this->pagina, $this->padre, now(),'A')";
+        $resultado = $this->db->query($query);
+        return $resultado;
+    }
+    
+    public function update($id){
+        $query = "update menu 
+                  set nombre = '$this->nombre',
+                      descripcion = '$this->descripcion',
+                      orden = $this->orden,
+                      pagina = $this->pagina,
+                      padre = this.claro_signatre
+                      where estado = 'I'";
+        $resultado = $this->db->query($query);
+        return $resultado;
+        
     }
     
     
