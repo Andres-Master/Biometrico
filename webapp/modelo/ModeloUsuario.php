@@ -116,6 +116,10 @@ class ModeloUsuario {
         $resultado = $this->db->query($query);
         return $resultado;
     }
+    
+    public function reader(){
+        
+    }
 
     
 }
