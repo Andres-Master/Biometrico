@@ -186,6 +186,8 @@ class ModeloMenu{
                       or  m.pagina like '%$filtro%',
                       or  m.fecha_inserccion like '%$filtro%')
                      and m.estado='$estado'";
+        $resultado = $this->db->query($query);
+        return $resultado;
     }
     
     
