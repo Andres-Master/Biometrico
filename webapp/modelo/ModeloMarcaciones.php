@@ -134,6 +134,24 @@ class ModeloMarcaciones{
         return $result;
     }
     
+    public function reader($filtro, $estado){
+        $query = "SELECT m.id_marcaciones, 
+                         m.id_detalle_marcacion, 
+                         m.id_empleado, 
+                         m.fecha, 
+                         m.observacion,
+                         m.estado 
+                    FROM marcaciones m
+                   where (m.id_marcaciones like '%$filtro%'
+                      or m.id_detalle_marcacion like '%$filtro%'
+                      or m.id_empleado like '%$filtro%'
+                      or m.fecha like '%$filtro%'
+                      or m.observacion like '%$filtro%')
+                    and  m.estado = '$estado'";
+        $result= $this->db->query($query);
+        return $result;
+    }
+    
     
 }
 ?>
