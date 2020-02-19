@@ -88,7 +88,8 @@ class ModeloJornadaEmpleado{
     public function update($id){
         
         $query ="update jornada_empleados
-                    set id_empleado =  $this->empleado
+                    set id_empleado =  $this->empleado,
+                        id_jornada  =  $this->jornada
                   where id_jornada_empleados = $id";
         $result= $this->db->query($query);
         return $result;
@@ -111,6 +112,18 @@ class ModeloJornadaEmpleado{
                   where (je.id_jornada_empleados like '%$filtro%'
                       or je.id_jornada like '%$filtro%'
                       or je.id_empleado like '%$filtro%')
+                     and je.estado = '$estado'";
+        $result= $this->db->query($query);
+        return $result;
+    }
+    
+    public function consulta_campo($valor, $estado, $campo){
+        $query = "SELECT je.id_jornada_empleados,
+                         je.id_jornada,
+                         je.id_empleado,
+                         je.estado
+                    FROM jornada_empleados je
+                  where (je.$campo = '$valor')
                      and je.estado = '$estado'";
         $result= $this->db->query($query);
         return $result;

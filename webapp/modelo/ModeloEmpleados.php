@@ -221,6 +221,7 @@ class ModeloEmpleado {
                          e.imagen,
                          e.estado,
                          e.fecha_activacion
+                    from empleados e
                    where (e.id_empleado like '%$filtro%'
                        or e.cedula like '%$filtro%'
                        or e.nombre like '%$filtro%'
@@ -232,6 +233,36 @@ class ModeloEmpleado {
                     and  e.estado = '$estado'";
         $result= $this->db->query($query);
         return $result;
+    }
+    
+    public function getEmpleado($id){
+        $query = "select e.id_empleado,
+                         e.cedula,
+                         e.nombre,
+                         e.apellido,
+                         e.fecha_nacimiento,
+                         e.direccion,
+                         e.telefono,
+                         e.observacion,
+                         e.imagen,
+                         e.estado,
+                         e.fecha_activacion
+                    from empleados e
+                   where e.id_empleado= $id";
+        $result= $this->db->query($query);
+        
+        while ($arreglo=mysql_fetch_array($result))
+        {
+            $this->id=$id;
+            $this->cedula=$arreglo["cedula"];
+            $this->nombre=$arreglo["nombre"];
+            $this->apellido=$arreglo["apellido"];
+            $this->fecha_nacimiento=$arreglo["fecha_nacimiento"];
+            $this->direccion=$arreglo["direccion"];
+            $this->telefono=$arreglo["telefono"];
+            $this->observacion=$arreglo["observacion"];
+            $this->imagen=$arreglo["imagen"];
+        } 
     }
     
 }
